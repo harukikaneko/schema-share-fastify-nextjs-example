@@ -63,4 +63,4 @@ export type UserParam = z.infer<typeof getUserParam>;
 export type UserUpdateBody = z.infer<typeof updateUserBody>;
 export type UserCreateBody = z.infer<typeof createUserBody>;
 
-export type User = { name: string; age: number };
+export type UserModel = { name: string; age: number };

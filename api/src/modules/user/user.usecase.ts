@@ -1,13 +1,14 @@
+import { User } from './user.domain';
 import {
   createUserDriver,
   deleteUserDriver,
-  getUserDriver,
   updateUserDriver,
 } from './user.driver';
+import * as gateway from './user.gateway'; 
 
 export const userUseCase = () => {
-  const getUser = async (id: string) => {
-    return await getUserDriver(id);
+  const getUser = async (id: string): Promise<User[]> => {
+    return await gateway.getUser(id);
   };
 
   const updateUser = async (id: string, name: string) => {

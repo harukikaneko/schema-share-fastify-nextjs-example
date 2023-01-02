@@ -1,8 +1,9 @@
-import fs from 'fs';
-import { server } from '../app';
 import swagger from '@fastify/swagger';
 import swaggerUI from '@fastify/swagger-ui';
 import { withRefResolver } from 'fastify-zod';
+import fs from 'fs';
+
+import { server } from '../app';
 
 export const swaggerSetUp = () => {
   server.register(

@@ -35,3 +35,4 @@ pids
 .DS_Store
 
 /dist
+.tool-versions

@@ -1,11 +1,12 @@
 import { FastifyInstance } from 'fastify';
-import { $ref } from './user.schema';
+
 import {
   createUserHandler,
   deleteUserHandler,
   getUserHandler,
   updateUserHandler,
 } from './user.handler';
+import { $ref } from './user.schema';
 
 export const getUser = async (server: FastifyInstance) => {
   server.get(

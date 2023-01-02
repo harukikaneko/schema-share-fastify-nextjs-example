@@ -60,7 +60,7 @@
 - modules フォルダの中で取得するリソースについて切り分ける
 
 ```sh
-❯ cd api/src &&tree -L 3
+❯ cd api/src && tree -L 3
 .
 ├── app.ts
 ├── index.ts
@@ -68,8 +68,10 @@
 │   ├── healthCheck
 │   │   └── healthCheck.ts
 │   └── user
-│       ├── __tests__
+│       ├── __test__
+│       ├── user.domain.ts
 │       ├── user.driver.ts
+│       ├── user.gateway.ts
 │       ├── user.handler.ts
 │       ├── user.rest.ts
 │       ├── user.schema.ts
@@ -79,11 +81,11 @@
     └── makeDoc.ts
 ```
 
-- `rest → handler → usecase → driver → DB`
+- `rest → handler → usecase -> gateway(実装中) → driver → DB`
 - スキーマ は`.schema.ts`ファイルしてリソース毎にそこに集める
 - handler は usecase を呼ぶだけ（handler のテストは無し）
 
-- テストは Driver を Mock した UseCase のテストのみ書いている。（全体 e2e は別の方法でテストしたい）
+- テストは Driver＆Gateway を Mock した テストを書いている。（全体 e2e は別の方法でテストしたい）
 
 ### 備考
 

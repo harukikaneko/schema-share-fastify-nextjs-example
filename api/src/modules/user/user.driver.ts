@@ -1,8 +1,8 @@
 import { pool } from '../../utils/db_pool';
-import { User } from './user.schema';
+import { UserModel } from './user.schema';
 
-export const getUserDriver = async (id: string) => {
-  const result = await pool.query<User>(
+export const getUserDriver = async (id: string): Promise<UserModel[]> => {
+  const result = await pool.query<UserModel>(
     'select name,age from users where id = $1',
     [id]
   );
@@ -10,10 +10,10 @@ export const getUserDriver = async (id: string) => {
   return result.rows;
 };
 
-export const updateUserDriver = async (id: string, name: string) => {
+export const updateUserDriver = async (id: string, name: string): Promise<UserModel> => {
   await pool.query('update users set name = $1 where id = $2', [name, id]);
 
-  const updated = await pool.query<User>(
+  const updated = await pool.query<UserModel>(
     'select name,age from users where id = $1',
     [id]
   );
@@ -22,7 +22,7 @@ export const updateUserDriver = async (id: string, name: string) => {
   return updated.rows[0];
 };
 
-export const createUserDriver = async (name: string, age: number) => {
+export const createUserDriver = async (name: string, age: number): Promise<Status> => {
   await pool.query('insert into users (name, age) values ($1, $2)', [
     name,
     age,
@@ -30,7 +30,11 @@ export const createUserDriver = async (name: string, age: number) => {
   return { status: 'ok' };
 };
 
-export const deleteUserDriver = async (id: string) => {
+export const deleteUserDriver = async (id: string): Promise<Status> => {
   await pool.query('delete from users where id = $1', [id]);
   return { status: 'ok' };
 };
+
+export interface Status {
+  status: string;
+}

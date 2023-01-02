@@ -1,14 +1,14 @@
-import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import Fastify from 'fastify';
 
 import { healthCheck } from './modules/healthCheck/healthCheck';
-import { userSchemas } from './modules/user/user.schema';
 import {
   createUser,
   deleteUser,
   getUser,
   updateUser,
 } from './modules/user/user.rest';
+import { userSchemas } from './modules/user/user.schema';
 import { makeDoc, swaggerSetUp } from './utils/makeDoc';
 
 export const server = Fastify({

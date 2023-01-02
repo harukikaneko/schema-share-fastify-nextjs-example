@@ -1,4 +1,5 @@
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { FastifyRequest } from 'fastify';
+
 import { UserCreateBody, UserParam, UserUpdateBody } from './user.schema';
 import { userUseCase } from './user.usecase';
 
