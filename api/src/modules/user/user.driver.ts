@@ -1,5 +1,4 @@
 import { pool } from '../../utils/db_pool';
-import { UserModel } from './user.schema';
 
 export const getUserDriver = async (id: string): Promise<UserModel[]> => {
   const result = await pool.query<UserModel>(
@@ -35,6 +34,6 @@ export const deleteUserDriver = async (id: string): Promise<Status> => {
   return { status: 'ok' };
 };
 
-export interface Status {
-  status: string;
-}
+export type Status = { status: string };
+
+export type UserModel = { name: string; age: number };

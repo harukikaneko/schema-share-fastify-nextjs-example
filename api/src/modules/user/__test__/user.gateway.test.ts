@@ -3,7 +3,6 @@ import { describe, expect, test, vi } from 'vitest';
 import { User } from '../user.domain';
 import * as driver from '../user.driver';
 import * as gateway from '../user.gateway';
-import { UserModel } from '../user.schema';
 
 describe('gateway test', () => {
   test('get users', async () => {
@@ -12,7 +11,7 @@ describe('gateway test', () => {
         {
           name: 'test',
           age: 23,
-        } as UserModel,
+        } as driver.UserModel,
       ])
     );
 

@@ -2,29 +2,31 @@ import { User } from './user.domain';
 import {
   createUserDriver,
   deleteUserDriver,
+  Status,
   updateUserDriver,
+  UserModel,
 } from './user.driver';
-import * as gateway from './user.gateway'; 
+import * as gateway from './user.gateway';
 
-export const userUseCase = () => {
-  const getUser = async (id: string): Promise<User[]> => {
-    return await gateway.getUser(id);
-  };
-
-  const updateUser = async (id: string, name: string) => {
-    return await updateUserDriver(id, name);
-  };
-  const createUser = async (name: string, age: number) => {
-    return await createUserDriver(name, age);
-  };
-  const deleteUser = async (id: string) => {
-    return await deleteUserDriver(id);
-  };
-
-  return {
-    getUser,
-    updateUser,
-    createUser,
-    deleteUser,
-  };
+const getUser = async (id: string): Promise<User[]> => {
+  return await gateway.getUser(id);
 };
+
+const updateUser = async (id: string, name: string): Promise<UserModel> => {
+  return await updateUserDriver(id, name);
+};
+
+const createUser = async (name: string, age: number): Promise<Status> => {
+  return await createUserDriver(name, age);
+};
+
+const deleteUser = async (id: string): Promise<Status> => {
+  return await deleteUserDriver(id);
+};
+
+export {
+  getUser,
+  updateUser,
+  createUser,
+  deleteUser
+}

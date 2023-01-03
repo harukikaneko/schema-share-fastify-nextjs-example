@@ -1,16 +1,17 @@
 import { FastifyRequest } from 'fastify';
 
+import { User } from './user.domain';
+import { Status, UserModel } from './user.driver';
 import { UserCreateBody, UserParam, UserUpdateBody } from './user.schema';
-import { userUseCase } from './user.usecase';
+import * as use_case from './user.usecase';
 
 export const getUserHandler = async (
   req: FastifyRequest<{
     Params: UserParam;
   }>
-) => {
+): Promise<User[]> => {
   const id = req.params.id;
-  const { getUser } = userUseCase();
-  return getUser(id);
+  return use_case.getUser(id);
 };
 
 export const updateUserHandler = async (
@@ -18,30 +19,26 @@ export const updateUserHandler = async (
     Params: UserParam;
     Body: UserUpdateBody;
   }>
-) => {
+): Promise<UserModel> => {
   const { id } = req.params;
   const name = req.body.name;
-  const { updateUser } = userUseCase();
-
-  return await updateUser(id, name);
+  return await use_case.updateUser(id, name);
 };
 
 export const createUserHandler = async (
   req: FastifyRequest<{
     Body: UserCreateBody;
   }>
-) => {
+): Promise<Status> => {
   const { name, age } = req.body;
-  const { createUser } = userUseCase();
-  return await createUser(name, age);
+  return await use_case.createUser(name, age);
 };
 
 export const deleteUserHandler = async (
   req: FastifyRequest<{
     Params: UserParam;
   }>
-) => {
+): Promise<Status>  => {
   const { id } = req.params;
-  const { deleteUser } = userUseCase();
-  return await deleteUser(id);
+  return await use_case.deleteUser(id);
 };
